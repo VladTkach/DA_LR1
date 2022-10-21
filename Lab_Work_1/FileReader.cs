@@ -4,24 +4,6 @@ namespace Lab_Work_1;
 
 public class FileReader
 {
-    public static int[] ReadFile(string fileName)
-    {
-        Console.WriteLine("Read File to arr ");
-        FileInfo fileInfo = new FileInfo(fileName);
-        long size = fileInfo.Length / 4;
-        int[] arr = new int[size];
-        using (BinaryReader binaryReader = new BinaryReader(fileInfo.OpenRead()))
-        {
-            for (int i = 0; i < size; i++)
-            {
-                arr[i] = binaryReader.ReadInt32();
-                // Console.WriteLine(arr[i]);
-            }
-        }
-
-        return arr;
-    }
-
     public static void showFile(string fileName)
     {
         FileInfo fileInfo = new FileInfo(fileName);
@@ -50,14 +32,12 @@ public class FileReader
     {
         Console.WriteLine("Test FIle:  " + fileName);
         FileInfo fileInfo = new FileInfo(fileName);
-        long size = fileInfo.Length / 4;
-        int num = 10;
+        int num = 50;
         using (BinaryReader binaryReader = new BinaryReader(fileInfo.OpenRead()))
         {
             for (int i = 0; i < num; i++)
             {
                 Console.Write(binaryReader.ReadInt32() + " ");
-                // Console.WriteLine("Posinion = " + binaryReader.BaseStream.Position);
             }
 
             Console.WriteLine("\n");
@@ -65,7 +45,6 @@ public class FileReader
             for (int i = 0; i < num; i++)
             {
                 Console.Write(binaryReader.ReadInt32() + " ");
-                // Console.WriteLine("Posinion = " + binaryReader.BaseStream.Position);
             }
 
             Console.WriteLine("\n");

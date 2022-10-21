@@ -4,34 +4,6 @@ namespace Lab_Work_1;
 
 public class FileWriter
 {
-    public static void CreateFile(string fileName)
-    {
-        using (StreamWriter writer = File.CreateText(fileName))
-        {
-            Random random = new Random();
-            for (int i = 0; i < 20; i++)
-            {
-                writer.WriteLine(random.Next());
-            }
-        }
-    }
-
-    public static void CreateFileBin(string fileName)
-    {
-        Console.WriteLine("Create File__");
-        FileInfo fileInfo = new FileInfo(fileName);
-        using (BinaryWriter binaryWriter = new BinaryWriter(fileInfo.OpenWrite()))
-        {
-            Random random = new Random();
-            for (int i = 0; i < 20; i++)
-            {
-                int rand = random.Next(int.MinValue, int.MaxValue);
-                // Console.WriteLine(rand);
-                binaryWriter.Write(rand);
-            }
-        }
-    }
-
     public static void CreateFileBin(string fileName, long size)
     {
         Console.WriteLine("Create File: " + size);
@@ -44,7 +16,6 @@ public class FileWriter
             {
                 // int rand = random.Next(20);
                 int rand = random.Next(int.MinValue, int.MaxValue);
-                // Console.WriteLine(rand);
                 binaryWriter.Write(rand);
             }
         }

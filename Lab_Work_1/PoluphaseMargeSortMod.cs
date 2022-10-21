@@ -11,16 +11,9 @@ public class PoluphaseMargeSortMod
         int minLenghtFile = 0;
         long newLength = 0;
         OpenReaders(polyFiles);
-
-        // var watch = new Stopwatch();
-
-
+       
         for (int i = 0; i < iteration; i++)
         {
-            // watch.Restart();
-            // watch.Start();
- 
-            // Console.WriteLine("=====  " + i + "  =======");
             minLenghtFile = GetMinLengthFile(polyFiles);
             newLength = (polyFiles[minLenghtFile].Length + 1) / polyFiles[minLenghtFile].SeriesSize;
 
@@ -61,9 +54,6 @@ public class PoluphaseMargeSortMod
             polyFiles[minLenghtFile].ReCreateFile();
             polyFiles[current].OpenReader();
             current = minLenghtFile;
-            
-            // watch.Stop();
-            // Console.WriteLine(watch.ElapsedMilliseconds + " ms");
         }
     }
 

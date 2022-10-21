@@ -2,36 +2,12 @@
 
 public class PreparetionSorting
 {
-    public static PolyFile[] getListFile(string mainFile, int numFile, int number, ref int iteration, ref int extra)
-    {
-        int first = 0, second = 1;
-        Fibonacci.GetFileSize(ref first, ref second, ref iteration, number);
-        extra = first + second - number;
-        Console.WriteLine("Fibonacci: " + first + " " + second + " " + extra);
-
-        FileWriter.AppendFileBin(mainFile, extra);
-        
-        PolyFile[] polyFiles = new PolyFile[numFile];
-
-        polyFiles[0] = new PolyFile("Poly" + 1, first, 1);
-        
-        polyFiles[1] = new PolyFile("Poly" + 2, second, 1);
-
-        polyFiles[2] = new PolyFile("Poly" + 3,  0);
-
-        return polyFiles;
-    }
-
     public static PolyFileMod[] getListFile2(string mainFile, int numFile, long number, ref int iteration, ref long extra)
     {
         int[] fibonacci = Fibonacci.getFileSize3(number, numFile, ref iteration, ref extra);
-
-        // Console.WriteLine("File size: ");
-        // foreach (var VARIABLE in fibonacci)
-        // {
-        //     Console.WriteLine(VARIABLE);
-        // }
         
+        extra = extra - number;
+        Console.WriteLine("Extra = " + extra);
         FileWriter.AppendFileBin(mainFile, extra);
 
         PolyFileMod[] polyFiles = new PolyFileMod[numFile];
@@ -70,18 +46,9 @@ public class PreparetionSorting
 
     public static PolyFileMod[] getFileListMod(string mainFile, long iSize, long idivider, int numFile, ref int iteration, ref long extra)
     {
-        long num = iSize / idivider;
-        // Console.WriteLine(num);
-
+        double num = iSize / (double)idivider;
         int[] fibonacci = Fibonacci.getFileSize3(num, numFile, ref iteration, ref extra);
-        // foreach (var VARIABLE in fibonacci)
-        // {
-        //     Console.WriteLine(VARIABLE);
-        // }
-
-        // Console.WriteLine("Extra = " + extra);
-        extra = extra * idivider - (iSize - idivider * num);
-        // Console.WriteLine("Extra = " + extra / idivider);
+        extra = (extra * idivider - iSize);
         FileWriter.AppendFileBin(mainFile, extra);
         
         PolyFileMod[] polyFiles = new PolyFileMod[numFile];
@@ -120,7 +87,6 @@ public class PreparetionSorting
                         {
                             binaryWriter.Write(arr[k]);
                         }
-                        
                     }
                 }
             }
